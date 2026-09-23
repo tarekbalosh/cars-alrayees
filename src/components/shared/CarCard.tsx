@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -14,24 +15,21 @@ interface CarCardProps {
 }
 
 export function CarCard({ car, dict, lang }: CarCardProps) {
+  const primaryImage = car.images?.find((img) => img.isPrimary) || car.images?.[0];
+  const imageUrl = primaryImage?.url || '/placeholder-car.jpg';
+  const imageAlt = lang === 'ar' ? (primaryImage?.altAr || car.brand) : (primaryImage?.altEn || car.brand);
   const transmissionLabel = TRANSMISSION_LABELS[lang][car.transmission];
   const fuelTypeLabel = FUEL_TYPE_LABELS[lang][car.fuelType];
 
   return (
     <Card className="overflow-hidden group flex flex-col h-full border-border/50 hover:border-border transition-colors">
       <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-        {/* Placeholder until Cloudinary is ready */}
-        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-muted">
-          <span className="font-semibold">{car.brand} {car.model}</span>
-        </div>
-        {/* Real Image:
         <Image
           src={imageUrl}
           alt={imageAlt}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        */}
         {!car.isAvailable && (
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
             <Badge variant="destructive" className="text-lg px-4 py-1">

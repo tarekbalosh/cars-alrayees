@@ -14,13 +14,37 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: '%s | Al Rayees Car Rental',
-    default: 'Al Rayees Car Rental | تأجير سيارات الرئيس',
-  },
-  description: 'Premium car rental services in Malaysia. Rent luxury, economy, SUV and sports cars at competitive prices.',
-};
+import { SITE_NAME, SITE_NAME_AR, SITE_URL } from '@/lib/constants';
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const siteName = lang === 'ar' ? SITE_NAME_AR : SITE_NAME;
+  
+  return {
+    title: {
+      template: `%s | ${siteName}`,
+      default: siteName,
+    },
+    description: lang === 'ar' 
+      ? 'خدمات تأجير السيارات الرائدة في ماليزيا. استأجر سيارات فخمة، اقتصادية، وعائلية بأفضل الأسعار.' 
+      : 'Premium car rental services in Malaysia. Rent luxury, economy, SUV and sports cars at competitive prices.',
+    metadataBase: new URL(SITE_URL),
+    alternates: {
+      languages: {
+        'en-US': '/en',
+        'ar-SA': '/ar',
+      },
+    },
+    openGraph: {
+      title: siteName,
+      description: lang === 'ar' ? 'خدمات تأجير السيارات الرائدة في ماليزيا' : 'Premium car rental services in Malaysia',
+      url: SITE_URL,
+      siteName: siteName,
+      locale: lang === 'ar' ? 'ar_SA' : 'en_US',
+      type: 'website',
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return [{ lang: 'ar' }, { lang: 'en' }];

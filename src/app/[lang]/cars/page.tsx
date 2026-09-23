@@ -10,6 +10,15 @@ interface CarsPageProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
+export async function generateMetadata({ params }: CarsPageProps) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+  return {
+    title: dict.nav.cars,
+    description: dict.cars.subtitle,
+  };
+}
+
 export default async function CarsPage({ params, searchParams }: CarsPageProps) {
   const { lang } = await params;
   const resolvedSearchParams = await searchParams;

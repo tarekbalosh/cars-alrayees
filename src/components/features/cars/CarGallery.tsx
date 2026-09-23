@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import {
   Carousel,
   CarouselContent,
@@ -65,9 +66,13 @@ export function CarGallery({ images, brand, lang }: CarGalleryProps) {
             return (
               <CarouselItem key={image.id}>
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted">
-                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-muted">
-                    <span className="font-semibold">{altText}</span>
-                  </div>
+                  <Image
+                    src={image.url}
+                    alt={altText}
+                    fill
+                    className="object-cover"
+                    priority={image.isPrimary}
+                  />
                 </div>
               </CarouselItem>
             );
@@ -91,9 +96,15 @@ export function CarGallery({ images, brand, lang }: CarGalleryProps) {
                 current === index ? "ring-2 ring-primary ring-offset-2 ring-offset-background" : "opacity-50 hover:opacity-100"
               )}
             >
-              <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground bg-muted">
+              <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground bg-muted z-10">
                 {index + 1}
               </div>
+              <Image
+                src={image.url}
+                alt={lang === 'ar' ? (image.altAr || brand) : (image.altEn || brand)}
+                fill
+                className="object-cover"
+              />
             </button>
           );
         })}

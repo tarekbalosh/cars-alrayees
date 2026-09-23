@@ -1,6 +1,7 @@
 export const SITE_NAME = 'Al Rayees Car Rental';
 export const SITE_NAME_AR = 'تأجير سيارات الرئيس';
 export const DEFAULT_CURRENCY = 'MYR';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
 export const TRANSMISSION_LABELS = {
   ar: { AUTOMATIC: 'أوتوماتيك', MANUAL: 'يدوي' },

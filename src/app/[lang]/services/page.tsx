@@ -2,6 +2,15 @@ import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n';
 import { Shield, Clock, MapPin, Key, HeartHandshake, PhoneCall } from 'lucide-react';
 
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as Locale);
+  return {
+    title: dict.nav.services,
+    description: dict.services.subtitle,
+  };
+}
+
 export default async function ServicesPage({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const dict = await getDictionary(lang as Locale);

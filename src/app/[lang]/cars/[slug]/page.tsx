@@ -12,6 +12,29 @@ interface CarDetailsPageProps {
   params: Promise<{ lang: string; slug: string }>;
 }
 
+export async function generateMetadata({ params }: CarDetailsPageProps) {
+  const { lang, slug } = await params;
+  const car = await CarService.getCarBySlug(slug);
+  
+  if (!car) {
+    return { title: 'Not Found' };
+  }
+
+  const title = `${car.brand} ${car.model} ${car.year}`;
+  const description = lang === 'ar' ? car.descriptionAr : car.descriptionEn;
+  const imageUrl = car.images?.find((img) => img.isPrimary)?.url || car.images?.[0]?.url;
+
+  return {
+    title,
+    description: description.substring(0, 160),
+    openGraph: {
+      title,
+      description: description.substring(0, 160),
+      images: imageUrl ? [{ url: imageUrl }] : [],
+    }
+  };
+}
+
 export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
   const { lang, slug } = await params;
   const dict = await getDictionary(lang as Locale);
