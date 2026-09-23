@@ -26,7 +26,7 @@
 - `src/infrastructure/database/prisma.ts` ومستودعات Prisma.
 - `src/i18n/` (config.ts, dictionaries.ts وملفات JSON) و `src/middleware.ts`
 - `src/app/[lang]/` (layout.tsx, page.tsx, not-found.tsx)
-- `src/lib/constants/index.ts` و `src/lib/validations/index.ts`
+- `src/lib/constants/index.ts` و `src/lib/utils.ts` و `src/lib/validations/index.ts`
 
 ### تغييرات قاعدة البيانات
 - إنشاء جداول: `categories`, `cars`, `car_images`, `car_pricing`, `bookings`.
@@ -46,3 +46,35 @@
 
 ### مشكلات معروفة/متبقية
 - لا يوجد حالياً. نظام قاعدة البيانات يعمل بسلاسة.
+
+## PHASE 2 — UI & Core Pages ✅ 2026-09-23
+
+### ما تم تنفيذه
+- بناء مكونات الواجهة الأمامية `Header` و `Footer` مع تبديل اللغة `LanguageSwitcher`.
+- إضافة مكونات تطبيق (shadcn/ui) المطلوبة (Card, Input, Textarea, Select, Label, Badge, Carousel, Skeleton).
+- بناء الصفحة الرئيسية (الـ Hero, قسم السيارات المميزة، قسم لماذا تختارنا).
+- بناء صفحة استعراض السيارات (`/cars`) مع نظام فلاتر عميل (Client Component) متصل مع الـ URL (فلاتر: البحث، الفئة، نوع ناقل الحركة، نوع الوقود، الفرز).
+- بناء صفحة تفاصيل السيارة (`/cars/[slug]`) مع المكون الخاص بمعرض الصور `CarGallery` (باستخدام Carousel) وتوليد رابط WhatsApp مسبق التعبئة بناءً على السيارة.
+- بناء صفحات ثابتة: "من نحن" (`/about`)، "الخدمات" (`/services`)، "اتصل بنا" (`/contact`).
+- تم دمج كافة الصفحات مع نظام الترجمة وربطها مع قاعدة البيانات عبر `CarService` و `CategoryService`.
+
+### الملفات المُنشأة/المُعدّلة
+- `src/app/[lang]/layout.tsx` (تمت إضافة الهيدر والفوتر).
+- `src/app/[lang]/page.tsx` (الصفحة الرئيسية).
+- `src/app/[lang]/cars/page.tsx` و `src/app/[lang]/cars/[slug]/page.tsx` (صفحات السيارات).
+- `src/app/[lang]/about/page.tsx`, `src/app/[lang]/services/page.tsx`, `src/app/[lang]/contact/page.tsx`
+- `src/components/layout/Header.tsx`, `Footer.tsx`, `LanguageSwitcher.tsx`
+- `src/components/shared/CarCard.tsx`
+- `src/components/features/cars/CarFilters.tsx`, `CarGallery.tsx`
+- `src/components/features/home/Hero.tsx`
+- إضافة مكونات في `src/components/ui/`
+
+### الاعتماديات المُضافة
+- `use-debounce` (لتحسين أداء البحث في الفلاتر)
+- `embla-carousel-react` (من خلال Shadcn Carousel)
+
+### الفحوصات المُنفَّذة ونتائجها
+- lint: ✅ (تم إصلاح مشاكل الـ React Compiler و `any` و `useEffect`)
+- tsc --noEmit: ✅ (تم إصلاح كافة أخطاء الـ Typescript وأنواع القواميس)
+- build: ✅ (اكتمل بناء الصفحات الثابتة والديناميكية بنجاح)
+- فحص الترجمة وأنظمة القواميس: ✅ (تم تصحيح الوصول لبعض مفاتيح الترجمة المفقودة).

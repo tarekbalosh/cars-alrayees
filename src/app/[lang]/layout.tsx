@@ -26,6 +26,10 @@ export async function generateStaticParams() {
   return [{ lang: 'ar' }, { lang: 'en' }];
 }
 
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { getDictionary } from '@/i18n';
+
 export default async function RootLayout({
   children,
   params,
@@ -41,13 +45,18 @@ export default async function RootLayout({
 
   const locale = lang as Locale;
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
+  const dict = await getDictionary(locale);
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased min-h-screen flex flex-col`}
       >
-        {children}
+        <Header lang={locale} dict={dict} />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer lang={locale} dict={dict} />
       </body>
     </html>
   );
