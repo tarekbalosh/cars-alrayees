@@ -58,7 +58,7 @@ export default async function CarsPage({ params, searchParams }: CarsPageProps) 
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar Filters */}
-        <div className="w-full lg:w-1/4">
+        <div className="w-full lg:w-1/4 lg:sticky lg:top-24 h-fit z-10">
           <CarFilters categories={categories} dict={dict} lang={lang as Locale} />
         </div>
 

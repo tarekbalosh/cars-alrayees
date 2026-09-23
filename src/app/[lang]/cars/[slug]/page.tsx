@@ -3,6 +3,7 @@ import { getDictionary } from '@/i18n';
 import type { Locale } from '@/i18n';
 import { CarService } from '@/core/services';
 import { CarGallery } from '@/components/features/cars/CarGallery';
+import { CarBookingWidget } from '@/components/features/cars/CarBookingWidget';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Users, Briefcase, Fuel, Settings, Check, Phone } from 'lucide-react';
@@ -49,10 +50,18 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
   const fuelTypeLabel = FUEL_TYPE_LABELS[lang as Locale][car.fuelType];
   const description = lang === 'ar' ? car.descriptionAr : car.descriptionEn;
 
-  // Format WhatsApp message
-  const whatsappNumber = "60123456789"; // Configuration
-  const whatsappMessage = encodeURIComponent(`Hi, I'm interested in renting the ${car.brand} ${car.model}.`);
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "60123456789"; // Configuration
+  
+  const t = {
+    currency: dict.common.currency,
+    perDay: dict.cars.perDay,
+    securityDeposit: dict.carDetails.securityDeposit,
+    inquireWhatsApp: dict.carDetails.inquireWhatsApp,
+    bookNow: dict.carDetails.bookNow,
+    rentalDuration: lang === 'ar' ? 'مدة الإيجار (أيام)' : 'Rental Duration (Days)',
+    totalPrice: lang === 'ar' ? 'السعر الإجمالي' : 'Total Price'
+  };
+
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -120,31 +129,15 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
             </div>
           )}
 
-          {/* Pricing & CTA */}
-          <div className="bg-muted/30 p-8 rounded-2xl border border-border/50 space-y-6">
-            {car.pricing ? (
-              <div className="flex items-baseline justify-between">
-                <div>
-                  <span className="text-4xl font-bold text-primary">{car.pricing.dailyRate}</span>
-                  <span className="text-muted-foreground font-medium ml-2">
-                    {dict.common.currency} / {dict.cars.perDay}
-                  </span>
-                </div>
-                <div className="text-right text-sm text-muted-foreground">
-                  <p>{dict.carDetails.securityDeposit}: {car.pricing.securityDeposit} {dict.common.currency}</p>
-                </div>
-              </div>
-            ) : (
-              <div className="text-xl font-semibold">{dict.carDetails.inquireWhatsApp}</div>
-            )}
-            
-            <Button size="lg" asChild className="w-full h-14 text-lg font-semibold bg-green-600 hover:bg-green-700 text-white">
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                <Phone className="w-5 h-5 mr-2 rtl:ml-2 rtl:mr-0" />
-                {dict.carDetails.bookNow}
-              </a>
-            </Button>
-          </div>
+          <CarBookingWidget
+            pricing={car.pricing}
+            carBrand={car.brand}
+            carModel={car.model}
+            whatsappNumber={whatsappNumber}
+            t={t}
+            lang={lang}
+            isAvailable={car.isAvailable}
+          />
         </div>
       </div>
     </div>

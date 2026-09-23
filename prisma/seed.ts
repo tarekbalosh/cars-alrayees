@@ -99,9 +99,9 @@ async function main() {
       categoryId: economy.id,
       pricing: { dailyRate: 120, weeklyRate: 750, monthlyRate: 2800, securityDeposit: 500 },
       images: [
-        { url: '/images/seed/toyota-vios-1.jpg', altAr: 'تويوتا فيوس 2024 - منظر أمامي', altEn: 'Toyota Vios 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/toyota-vios-2.jpg', altAr: 'تويوتا فيوس 2024 - منظر جانبي', altEn: 'Toyota Vios 2024 - Side View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/toyota-vios-3.jpg', altAr: 'تويوتا فيوس 2024 - الداخلية', altEn: 'Toyota Vios 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'تويوتا فيوس 2024 - منظر أمامي', altEn: 'Toyota Vios 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'تويوتا فيوس 2024 - منظر جانبي', altEn: 'Toyota Vios 2024 - Side View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'تويوتا فيوس 2024 - الداخلية', altEn: 'Toyota Vios 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -123,9 +123,9 @@ async function main() {
       categoryId: sedan.id,
       pricing: { dailyRate: 150, weeklyRate: 900, monthlyRate: 3200, securityDeposit: 600 },
       images: [
-        { url: '/images/seed/honda-city-1.jpg', altAr: 'هوندا سيتي 2024 - منظر أمامي', altEn: 'Honda City 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/honda-city-2.jpg', altAr: 'هوندا سيتي 2024 - منظر خلفي', altEn: 'Honda City 2024 - Rear View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/honda-city-3.jpg', altAr: 'هوندا سيتي 2024 - الداخلية', altEn: 'Honda City 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'هوندا سيتي 2024 - منظر أمامي', altEn: 'Honda City 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'هوندا سيتي 2024 - منظر خلفي', altEn: 'Honda City 2024 - Rear View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'هوندا سيتي 2024 - الداخلية', altEn: 'Honda City 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -147,9 +147,9 @@ async function main() {
       categoryId: sedan.id,
       pricing: { dailyRate: 220, weeklyRate: 1400, monthlyRate: 5000, securityDeposit: 1000 },
       images: [
-        { url: '/images/seed/toyota-camry-1.jpg', altAr: 'تويوتا كامري 2024 - منظر أمامي', altEn: 'Toyota Camry 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/toyota-camry-2.jpg', altAr: 'تويوتا كامري 2024 - منظر جانبي', altEn: 'Toyota Camry 2024 - Side View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/toyota-camry-3.jpg', altAr: 'تويوتا كامري 2024 - الداخلية', altEn: 'Toyota Camry 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'تويوتا كامري 2024 - منظر أمامي', altEn: 'Toyota Camry 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'تويوتا كامري 2024 - منظر جانبي', altEn: 'Toyota Camry 2024 - Side View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'تويوتا كامري 2024 - الداخلية', altEn: 'Toyota Camry 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -171,9 +171,9 @@ async function main() {
       categoryId: suv.id,
       pricing: { dailyRate: 180, weeklyRate: 1100, monthlyRate: 4000, securityDeposit: 800 },
       images: [
-        { url: '/images/seed/proton-x50-1.jpg', altAr: 'بروتون X50 2024 - منظر أمامي', altEn: 'Proton X50 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/proton-x50-2.jpg', altAr: 'بروتون X50 2024 - منظر خلفي', altEn: 'Proton X50 2024 - Rear View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/proton-x50-3.jpg', altAr: 'بروتون X50 2024 - الداخلية', altEn: 'Proton X50 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'بروتون X50 2024 - منظر أمامي', altEn: 'Proton X50 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'بروتون X50 2024 - منظر خلفي', altEn: 'Proton X50 2024 - Rear View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'بروتون X50 2024 - الداخلية', altEn: 'Proton X50 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -195,9 +195,9 @@ async function main() {
       categoryId: suv.id,
       pricing: { dailyRate: 300, weeklyRate: 1900, monthlyRate: 7000, securityDeposit: 1500 },
       images: [
-        { url: '/images/seed/toyota-fortuner-1.jpg', altAr: 'تويوتا فورتشنر 2024 - منظر أمامي', altEn: 'Toyota Fortuner 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/toyota-fortuner-2.jpg', altAr: 'تويوتا فورتشنر 2024 - منظر جانبي', altEn: 'Toyota Fortuner 2024 - Side View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/toyota-fortuner-3.jpg', altAr: 'تويوتا فورتشنر 2024 - الداخلية', altEn: 'Toyota Fortuner 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'تويوتا فورتشنر 2024 - منظر أمامي', altEn: 'Toyota Fortuner 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'تويوتا فورتشنر 2024 - منظر جانبي', altEn: 'Toyota Fortuner 2024 - Side View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'تويوتا فورتشنر 2024 - الداخلية', altEn: 'Toyota Fortuner 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -219,9 +219,9 @@ async function main() {
       categoryId: luxury.id,
       pricing: { dailyRate: 450, weeklyRate: 2800, monthlyRate: 10000, securityDeposit: 3000 },
       images: [
-        { url: '/images/seed/mercedes-c-class-1.jpg', altAr: 'مرسيدس C-Class 2024 - منظر أمامي', altEn: 'Mercedes C-Class 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/mercedes-c-class-2.jpg', altAr: 'مرسيدس C-Class 2024 - منظر جانبي', altEn: 'Mercedes C-Class 2024 - Side View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/mercedes-c-class-3.jpg', altAr: 'مرسيدس C-Class 2024 - الداخلية', altEn: 'Mercedes C-Class 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'مرسيدس C-Class 2024 - منظر أمامي', altEn: 'Mercedes C-Class 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'مرسيدس C-Class 2024 - منظر جانبي', altEn: 'Mercedes C-Class 2024 - Side View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'مرسيدس C-Class 2024 - الداخلية', altEn: 'Mercedes C-Class 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -243,9 +243,9 @@ async function main() {
       categoryId: luxury.id,
       pricing: { dailyRate: 480, weeklyRate: 3000, monthlyRate: 11000, securityDeposit: 3000 },
       images: [
-        { url: '/images/seed/bmw-3-series-1.jpg', altAr: 'بي إم دبليو 3 Series 2024 - منظر أمامي', altEn: 'BMW 3 Series 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/bmw-3-series-2.jpg', altAr: 'بي إم دبليو 3 Series 2024 - منظر خلفي', altEn: 'BMW 3 Series 2024 - Rear View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/bmw-3-series-3.jpg', altAr: 'بي إم دبليو 3 Series 2024 - الداخلية', altEn: 'BMW 3 Series 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'بي إم دبليو 3 Series 2024 - منظر أمامي', altEn: 'BMW 3 Series 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'بي إم دبليو 3 Series 2024 - منظر خلفي', altEn: 'BMW 3 Series 2024 - Rear View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'بي إم دبليو 3 Series 2024 - الداخلية', altEn: 'BMW 3 Series 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -267,9 +267,9 @@ async function main() {
       categoryId: economy.id,
       pricing: { dailyRate: 100, weeklyRate: 600, monthlyRate: 2200, securityDeposit: 400 },
       images: [
-        { url: '/images/seed/perodua-myvi-1.jpg', altAr: 'بيرودوا مايفي 2024 - منظر أمامي', altEn: 'Perodua Myvi 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/perodua-myvi-2.jpg', altAr: 'بيرودوا مايفي 2024 - منظر جانبي', altEn: 'Perodua Myvi 2024 - Side View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/perodua-myvi-3.jpg', altAr: 'بيرودوا مايفي 2024 - الداخلية', altEn: 'Perodua Myvi 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'بيرودوا مايفي 2024 - منظر أمامي', altEn: 'Perodua Myvi 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'بيرودوا مايفي 2024 - منظر جانبي', altEn: 'Perodua Myvi 2024 - Side View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'بيرودوا مايفي 2024 - الداخلية', altEn: 'Perodua Myvi 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -291,9 +291,9 @@ async function main() {
       categoryId: sports.id,
       pricing: { dailyRate: 350, weeklyRate: 2200, monthlyRate: 8000, securityDeposit: 2000 },
       images: [
-        { url: '/images/seed/mazda-mx5-1.jpg', altAr: 'مازدا MX-5 2024 - منظر أمامي', altEn: 'Mazda MX-5 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/mazda-mx5-2.jpg', altAr: 'مازدا MX-5 2024 - مكشوفة', altEn: 'Mazda MX-5 2024 - Convertible', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/mazda-mx5-3.jpg', altAr: 'مازدا MX-5 2024 - الداخلية', altEn: 'Mazda MX-5 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'مازدا MX-5 2024 - منظر أمامي', altEn: 'Mazda MX-5 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'مازدا MX-5 2024 - مكشوفة', altEn: 'Mazda MX-5 2024 - Convertible', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'مازدا MX-5 2024 - الداخلية', altEn: 'Mazda MX-5 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
     {
@@ -315,9 +315,9 @@ async function main() {
       categoryId: suv.id,
       pricing: { dailyRate: 250, weeklyRate: 1600, monthlyRate: 5800, securityDeposit: 1200 },
       images: [
-        { url: '/images/seed/honda-crv-1.jpg', altAr: 'هوندا CR-V 2024 - منظر أمامي', altEn: 'Honda CR-V 2024 - Front View', isPrimary: true, orderIndex: 0 },
-        { url: '/images/seed/honda-crv-2.jpg', altAr: 'هوندا CR-V 2024 - منظر جانبي', altEn: 'Honda CR-V 2024 - Side View', isPrimary: false, orderIndex: 1 },
-        { url: '/images/seed/honda-crv-3.jpg', altAr: 'هوندا CR-V 2024 - الداخلية', altEn: 'Honda CR-V 2024 - Interior', isPrimary: false, orderIndex: 2 },
+        { url: '/images/seed/car-front.webp', altAr: 'هوندا CR-V 2024 - منظر أمامي', altEn: 'Honda CR-V 2024 - Front View', isPrimary: true, orderIndex: 0 },
+        { url: '/images/seed/car-side.webp', altAr: 'هوندا CR-V 2024 - منظر جانبي', altEn: 'Honda CR-V 2024 - Side View', isPrimary: false, orderIndex: 1 },
+        { url: '/images/seed/car-interior.webp', altAr: 'هوندا CR-V 2024 - الداخلية', altEn: 'Honda CR-V 2024 - Interior', isPrimary: false, orderIndex: 2 },
       ],
     },
   ];

@@ -137,3 +137,35 @@
 
 ### مشكلات معروفة/متبقية
 - تحذير بسيط من مكتبة `pg` يخص SSL modes تم الإشارة إليه في سجلات البناء كجزء من النسخ المستقبلية للمكتبة ولكنه لا يؤثر على الأداء أو الأمان الحالي.
+
+## PHASE 5 — Admin Dashboard & Authentication ✅ 2026-09-23
+
+### ما تم تنفيذه
+- إعداد NextAuth.js (Auth.js) باستخدام Credentials provider وتسجيل دخول بكلمة مرور واحدة (مُشفرة بواسطة bcrypt).
+- تطبيق Rate Limiting (قفل الحساب مؤقتًا) لحماية واجهة تسجيل الدخول من محاولات التخمين.
+- حماية مسارات الإدارة `/admin` عبر `middleware.ts`.
+- بناء واجهة لوحة تحكم متكاملة تحتوي على شريط تنقل جانبي وتدعم اللغات (Dashboard Layout).
+- إعداد تكامل Cloudinary بالكامل من خلال API آمن لرفع الصور عبر `FormData`.
+- بناء واجهات استعراض وإنشاء وحذف الفئات (Categories).
+- بناء واجهات استعراض وإضافة السيارات متضمنة جميع التفاصيل (الأسعار المتقدمة، مواصفات السيارة، رفع صور متعددة).
+- بناء واجهة استعراض وتحديث حالات الحجوزات (Bookings).
+
+### الملفات المُنشأة/المُعدّلة
+- `.env` (إضافة مفاتيح Cloudinary ومتغيرات المصادقة).
+- `src/lib/auth.ts` و `src/lib/cloudinary.ts`.
+- `src/middleware.ts` (تعديل لإضافة الحماية).
+- `src/app/api/auth/[...nextauth]/route.ts`.
+- `src/app/api/upload/route.ts`.
+- `src/app/[lang]/admin/login/page.tsx`.
+- `src/app/[lang]/admin/(dashboard)/...` (layout.tsx, page.tsx وصفحات CRUD للسيارات والفئات والحجوزات).
+- `src/components/ui/table.tsx` (تمت إضافة مكون الجدول من shadcn/ui).
+
+### الاعتماديات المُضافة
+- `next-auth` و `bcrypt` و `@types/bcrypt`.
+- `cloudinary`.
+- `@radix-ui/react-table` (من خلال shadcn table).
+
+### الفحوصات المُنفَّذة ونتائجها
+- lint: ✅
+- tsc --noEmit: ✅ (تم إصلاح جميع أخطاء TypeScript وتصحيح أنواع Prisma).
+- build: ✅ (يتم بناء النسخة الإنتاجية بنجاح).

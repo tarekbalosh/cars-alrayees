@@ -18,7 +18,9 @@ function getLocale(request: NextRequest): string {
   }
 }
 
-export function middleware(request: NextRequest) {
+import { getToken } from 'next-auth/jwt';
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Skip internal paths and API routes
@@ -30,12 +32,32 @@ export function middleware(request: NextRequest) {
     return;
   }
 
+  // Admin route protection
+  const isAdminRoute = pathname.includes('/admin');
+  const isLoginRoute = pathname.includes('/admin/login');
+
+  if (isAdminRoute) {
+    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+    
+    if (!token && !isLoginRoute) {
+      // Redirect to login (preserving locale if present, or defaults to /en/admin/login)
+      const locale = getLocale(request);
+      return NextResponse.redirect(new URL(`/${locale}/admin/login`, request.url));
+    }
+    
+    if (token && isLoginRoute) {
+      // Redirect away from login if already authenticated
+      const locale = getLocale(request);
+      return NextResponse.redirect(new URL(`/${locale}/admin`, request.url));
+    }
+  }
+
   // Check if there is any supported locale in the pathname
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameHasLocale) return;
+  if (pathnameHasLocale) return NextResponse.next();
 
   // Redirect if there is no locale
   const locale = getLocale(request);
