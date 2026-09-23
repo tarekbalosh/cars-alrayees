@@ -1,0 +1,142 @@
+{
+  "nav": {
+    "home": "Home",
+    "cars": "Cars",
+    "about": "About Us",
+    "services": "Services",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "title": "Rent Your Dream Car in Malaysia",
+    "subtitle": "Discover our premium fleet of vehicles at competitive prices with exceptional service",
+    "cta": "Browse Cars",
+    "ctaSecondary": "Contact Us"
+  },
+  "cars": {
+    "title": "Car Fleet",
+    "subtitle": "Choose from our diverse collection of vehicles",
+    "featured": "Featured Cars",
+    "viewAll": "View All",
+    "viewDetails": "View Details",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "filters": "Filters",
+    "search": "Search for a car...",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "transmission": "Transmission",
+    "allTransmissions": "All",
+    "fuelType": "Fuel Type",
+    "allFuelTypes": "All",
+    "priceRange": "Price Range",
+    "sortBy": "Sort By",
+    "sortPrice": "Price",
+    "sortYear": "Year",
+    "sortName": "Name",
+    "ascending": "Ascending",
+    "descending": "Descending",
+    "noResults": "No matching cars found",
+    "clearFilters": "Clear Filters",
+    "perDay": "/ day",
+    "perWeek": "/ week",
+    "perMonth": "/ month"
+  },
+  "carDetails": {
+    "specifications": "Specifications",
+    "features": "Features",
+    "pricing": "Pricing",
+    "dailyRate": "Daily Rate",
+    "weeklyRate": "Weekly Rate",
+    "monthlyRate": "Monthly Rate",
+    "securityDeposit": "Security Deposit",
+    "seats": "Seats",
+    "doors": "Doors",
+    "engine": "Engine",
+    "luggage": "Luggage Capacity",
+    "transmission": "Transmission",
+    "fuelType": "Fuel Type",
+    "year": "Year",
+    "category": "Category",
+    "bookNow": "Book Now",
+    "inquireWhatsApp": "Inquire via WhatsApp",
+    "automatic": "Automatic",
+    "manual": "Manual",
+    "petrol": "Petrol",
+    "diesel": "Diesel",
+    "hybrid": "Hybrid",
+    "electric": "Electric",
+    "gallery": "Gallery"
+  },
+  "categories": {
+    "title": "Categories",
+    "economy": "Economy",
+    "sedan": "Sedan",
+    "suv": "SUV",
+    "luxury": "Luxury",
+    "sports": "Sports"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We offer a comprehensive range of car rental services",
+    "daily": "Daily Rental",
+    "dailyDesc": "Rent a car for one or more days at competitive prices",
+    "weekly": "Weekly Rental",
+    "weeklyDesc": "Special offers for weekly rentals with greater savings",
+    "monthly": "Monthly Rental",
+    "monthlyDesc": "Flexible monthly plans for long-term stays",
+    "airport": "Airport Transfer",
+    "airportDesc": "Convenient pick-up and drop-off service to and from the airport",
+    "chauffeur": "Chauffeur Service",
+    "chauffeurDesc": "Professional drivers for a comfortable travel experience"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Your trusted car rental partner in Malaysia",
+    "description": "We are a specialized car rental company in Malaysia, offering a wide range of high-quality vehicles at competitive prices. We are committed to providing a seamless and comfortable rental experience for our customers."
+  },
+  "whyUs": {
+    "title": "Why Choose Us?",
+    "quality": "High-Quality Vehicles",
+    "qualityDesc": "A modern and diverse fleet of carefully maintained cars",
+    "prices": "Competitive Prices",
+    "pricesDesc": "Best prices with special offers for long-term rentals",
+    "support": "24/7 Support",
+    "supportDesc": "Support team available around the clock to assist you",
+    "flexible": "Flexible Terms",
+    "flexibleDesc": "Flexible rental options tailored to your needs"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "message": "Message",
+    "send": "Send",
+    "success": "Your message has been sent successfully",
+    "whatsapp": "Contact via WhatsApp"
+  },
+  "testimonials": {
+    "title": "Customer Reviews"
+  },
+  "cta": {
+    "browseVehicles": "Browse Vehicles",
+    "contactUs": "Contact Us",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "description": "Your trusted car rental partner in Malaysia",
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "notFound": "Page not found",
+    "backHome": "Back to Home",
+    "language": "العربية",
+    "currency": "MYR"
+  }
+}

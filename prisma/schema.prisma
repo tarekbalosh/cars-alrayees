@@ -1,0 +1,154 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ──────────────────────────────────────────────
+
+enum Transmission {
+  AUTOMATIC
+  MANUAL
+}
+
+enum FuelType {
+  PETROL
+  DIESEL
+  HYBRID
+  ELECTRIC
+}
+
+enum RentalPeriod {
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+// ─── Models ─────────────────────────────────────────────
+
+model Category {
+  id            String   @id @default(cuid())
+  nameAr        String
+  nameEn        String
+  slug          String   @unique
+  descriptionAr String?
+  descriptionEn String?
+  icon          String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  cars Car[]
+
+  @@map("categories")
+}
+
+model Car {
+  id              String       @id @default(cuid())
+  brand           String
+  model           String
+  year            Int
+  slug            String       @unique
+  descriptionAr   String
+  descriptionEn   String
+  transmission    Transmission
+  fuelType        FuelType
+  seats           Int
+  doors           Int
+  engine          String
+  luggageCapacity Int
+  features        String[]
+  isFeatured      Boolean      @default(false)
+  isAvailable     Boolean      @default(true)
+  categoryId      String
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  category Category    @relation(fields: [categoryId], references: [id])
+  images   CarImage[]
+  pricing  CarPricing?
+  bookings Booking[]
+
+  @@index([categoryId])
+  @@index([slug])
+  @@index([isFeatured])
+  @@index([isAvailable])
+  @@map("cars")
+}
+
+model CarImage {
+  id         String   @id @default(cuid())
+  carId      String
+  url        String
+  publicId   String?
+  altAr      String?
+  altEn      String?
+  isPrimary  Boolean  @default(false)
+  orderIndex Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  car Car @relation(fields: [carId], references: [id], onDelete: Cascade)
+
+  @@index([carId])
+  @@map("car_images")
+}
+
+model CarPricing {
+  id              String   @id @default(cuid())
+  carId           String   @unique
+  dailyRate       Decimal  @db.Decimal(10, 2)
+  weeklyRate      Decimal  @db.Decimal(10, 2)
+  monthlyRate     Decimal  @db.Decimal(10, 2)
+  currency        String   @default("MYR")
+  securityDeposit Decimal  @db.Decimal(10, 2)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  car Car @relation(fields: [carId], references: [id], onDelete: Cascade)
+
+  @@map("car_pricing")
+}
+
+model Booking {
+  id                    String        @id @default(cuid())
+  carId                 String
+  customerName          String
+  phone                 String
+  email                 String
+  startDate             DateTime
+  endDate               DateTime
+  rentalPeriod          RentalPeriod
+  totalPrice            Decimal       @db.Decimal(10, 2)
+  currency              String        @default("MYR")
+  status                BookingStatus @default(PENDING)
+  paymentStatus         PaymentStatus @default(PENDING)
+  stripePaymentIntentId String?
+  notes                 String?
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+
+  car Car @relation(fields: [carId], references: [id])
+
+  @@index([carId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@map("bookings")
+}
