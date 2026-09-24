@@ -22,8 +22,12 @@ export class PrismaCustomerRepository implements CustomerRepository {
   }
 
   async create(data: CreateCustomerInput): Promise<Customer> {
+    const fullName = `${data.firstName} ${data.lastName}`.trim();
     return prisma.customer.create({
-      data,
+      data: {
+        ...data,
+        fullName,
+      },
     });
   }
 

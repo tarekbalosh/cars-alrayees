@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Trash2 } from 'lucide-react';
-import { Booking, Car } from '@prisma/client';
+import { Booking, Car, Customer } from '@prisma/client';
 
 export default async function BookingsPage() {
   const bookings = await getBookings();
@@ -33,22 +33,22 @@ export default async function BookingsPage() {
                 </TableCell>
               </TableRow>
             ) : (
-              bookings.map((booking: Booking & { car: Car }) => (
+              bookings.map((booking: Booking & { car: Car, customer: Customer }) => (
                 <TableRow key={booking.id}>
                   <TableCell>
-                    <div className="font-medium">{booking.customerName}</div>
-                    <div className="text-sm text-muted-foreground">{booking.phone}</div>
-                    <div className="text-sm text-muted-foreground">{booking.email}</div>
+                    <div className="font-medium">{booking.customer.fullName}</div>
+                    <div className="text-sm text-muted-foreground">{booking.customer.phone}</div>
+                    <div className="text-sm text-muted-foreground">{booking.customer.email}</div>
                   </TableCell>
                   <TableCell>
                     {booking.car.brand} {booking.car.model}
                   </TableCell>
                   <TableCell>
                     <div className="text-sm">
-                      Start: {booking.startDate.toLocaleDateString()}
+                      Start: {new Date(booking.pickupDate).toLocaleDateString()}
                     </div>
                     <div className="text-sm">
-                      End: {booking.endDate.toLocaleDateString()}
+                      End: {new Date(booking.returnDate).toLocaleDateString()}
                     </div>
                   </TableCell>
                   <TableCell>

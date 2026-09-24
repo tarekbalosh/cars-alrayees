@@ -8,7 +8,7 @@ import { BookingStatus } from '@prisma/client';
 
 export async function getBookings() {
   return prisma.booking.findMany({
-    include: { car: true },
+    include: { car: true, customer: true },
     orderBy: { createdAt: 'desc' },
   });
 }

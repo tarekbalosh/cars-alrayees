@@ -11,7 +11,7 @@ export default async function AdminDashboardPage() {
     prisma.booking.findMany({
       take: 5,
       orderBy: { createdAt: 'desc' },
-      include: { car: true },
+      include: { car: true, customer: true },
     })
   ]);
 
@@ -52,10 +52,10 @@ export default async function AdminDashboardPage() {
             <div className="p-8 text-center text-muted-foreground">No bookings found.</div>
           ) : (
             <div className="divide-y">
-              {recentBookings.map((booking: Booking & { car: CarModel }) => (
+              {recentBookings.map((booking: Booking & { car: CarModel, customer: any }) => (
                 <div key={booking.id} className="p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
-                    <p className="font-medium">{booking.customerName}</p>
+                    <p className="font-medium">{booking.customer.fullName}</p>
                     <p className="text-sm text-muted-foreground">{booking.car.brand} {booking.car.model}</p>
                   </div>
                   <div className="text-right">
@@ -63,7 +63,7 @@ export default async function AdminDashboardPage() {
                       {booking.status}
                     </div>
                     <p className="text-sm text-muted-foreground mt-1">
-                      {booking.startDate.toLocaleDateString()}
+                      {new Date(booking.pickupDate).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
