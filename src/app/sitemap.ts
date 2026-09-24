@@ -3,7 +3,12 @@ import { SITE_URL } from '@/lib/constants';
 import { CarService } from '@/core/services';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const cars = await CarService.getCars();
+  let cars: any[] = [];
+  try {
+    cars = await CarService.getCars();
+  } catch (error) {
+    console.warn('Failed to fetch cars for sitemap during build. Skipping dynamic car routes.', error);
+  }
   const locales = ['en', 'ar'];
   
   const routes = ['', '/cars', '/about', '/services', '/contact'].flatMap(route => 
