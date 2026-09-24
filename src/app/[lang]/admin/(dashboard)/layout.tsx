@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
-import { LayoutDashboard, Car, Tags, Calendar, LogOut } from 'lucide-react';
+import { LayoutDashboard, Car, Tags, Calendar, LogOut, Users, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default async function AdminLayout({
@@ -26,6 +26,8 @@ export default async function AdminLayout({
     { name: 'Cars', href: `/${lang}/admin/cars`, icon: Car },
     { name: 'Categories', href: `/${lang}/admin/categories`, icon: Tags },
     { name: 'Bookings', href: `/${lang}/admin/bookings`, icon: Calendar },
+    { name: 'Customers', href: `/${lang}/admin/customers`, icon: Users },
+    { name: 'Payments', href: `/${lang}/admin/payments`, icon: CreditCard },
   ];
 
   return (

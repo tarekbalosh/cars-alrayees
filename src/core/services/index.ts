@@ -1,5 +1,6 @@
-export { CarService } from './CarService';
-export { CategoryService } from './CategoryService';
-export { BookingService } from './BookingService';
-export { PricingService } from './PricingService';
-export { WhatsAppService } from './WhatsAppService';
+export * from './BookingService';
+export * from './CarService';
+export * from './CategoryService';
+export * from './PricingService';
+export * from './WhatsAppService';
+export * from './PaymentService';

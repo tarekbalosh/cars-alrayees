@@ -133,6 +133,7 @@ export default async function CarDetailsPage({ params }: CarDetailsPageProps) {
             pricing={car.pricing}
             carBrand={car.brand}
             carModel={car.model}
+            carSlug={slug}
             whatsappNumber={whatsappNumber}
             t={t}
             lang={lang}

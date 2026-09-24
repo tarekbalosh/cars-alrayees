@@ -29,18 +29,29 @@ enum RentalPeriod {
 }
 
 enum BookingStatus {
-  PENDING
+  PENDING_PAYMENT
+  PAYMENT_PROCESSING
+  PAID
   CONFIRMED
   ACTIVE
   COMPLETED
   CANCELLED
+  EXPIRED
+  REFUNDED
 }
 
 enum PaymentStatus {
   PENDING
+  PROCESSING
   PAID
   FAILED
+  CANCELLED
   REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum PaymentProvider {
+  FIUU
 }
 
 // ─── Models ─────────────────────────────────────────────
@@ -127,28 +138,137 @@ model CarPricing {
   @@map("car_pricing")
 }
 
+model Customer {
+  id                   String    @id @default(cuid())
+  firstName            String
+  lastName             String
+  fullName             String
+  email                String    @unique
+  phone                String
+  dateOfBirth          DateTime?
+  nationality          String?
+  passportOrIdNumber   String?
+  drivingLicenseNumber String?
+  drivingLicenseExpiry DateTime?
+  address              String?
+  city                 String?
+  state                String?
+  postcode             String?
+  country              String?   @default("Malaysia")
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  bookings Booking[]
+  payments Payment[]
+
+  @@index([email])
+  @@index([phone])
+  @@map("customers")
+}
+
 model Booking {
-  id                    String        @id @default(cuid())
-  carId                 String
-  customerName          String
-  phone                 String
-  email                 String
-  startDate             DateTime
-  endDate               DateTime
-  rentalPeriod          RentalPeriod
-  totalPrice            Decimal       @db.Decimal(10, 2)
-  currency              String        @default("MYR")
-  status                BookingStatus @default(PENDING)
-  paymentStatus         PaymentStatus @default(PENDING)
-  stripePaymentIntentId String?
-  notes                 String?
-  createdAt             DateTime      @default(now())
-  updatedAt             DateTime      @updatedAt
+  id            String        @id @default(cuid())
+  bookingNumber String        @unique
+  customerId    String
+  carId         String
 
-  car Car @relation(fields: [carId], references: [id])
+  pickupDate     DateTime
+  pickupTime     String
+  returnDate     DateTime
+  returnTime     String
+  pickupLocation String
+  returnLocation String
 
+  rentalAmount   Decimal       @db.Decimal(10, 2)
+  depositAmount  Decimal       @db.Decimal(10, 2) @default(0)
+  taxAmount      Decimal       @db.Decimal(10, 2) @default(0)
+  discountAmount Decimal       @db.Decimal(10, 2) @default(0)
+  totalAmount    Decimal       @db.Decimal(10, 2)
+  currency       String        @default("MYR")
+
+  status         BookingStatus @default(PENDING_PAYMENT)
+
+  customerNotes  String?
+  adminNotes     String?
+
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  paidAt         DateTime?
+  cancelledAt    DateTime?
+  completedAt    DateTime?
+  expiresAt      DateTime?
+
+  customer  Customer  @relation(fields: [customerId], references: [id])
+  car       Car       @relation(fields: [carId], references: [id])
+  payments  Payment[]
+
+  @@index([customerId])
   @@index([carId])
   @@index([status])
-  @@index([paymentStatus])
+  @@index([bookingNumber])
+  @@index([pickupDate])
+  @@index([returnDate])
+  @@index([createdAt])
   @@map("bookings")
+}
+
+model Payment {
+  id         String          @id @default(cuid())
+  bookingId  String
+  customerId String
+
+  amount    Decimal         @db.Decimal(10, 2)
+  currency  String          @default("MYR")
+
+  provider        PaymentProvider @default(FIUU)
+  paymentMethod   String?
+
+  providerTransactionId String?
+  providerReference     String?
+  providerOrderId       String?
+
+  status        PaymentStatus @default(PENDING)
+  failureReason String?
+
+  paidAt    DateTime?
+
+  refundAmount Decimal?  @db.Decimal(10, 2)
+  refundedAt   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  booking Booking        @relation(fields: [bookingId], references: [id])
+  customer Customer      @relation(fields: [customerId], references: [id])
+  events  PaymentEvent[]
+
+  @@index([bookingId])
+  @@index([customerId])
+  @@index([status])
+  @@index([providerTransactionId])
+  @@index([createdAt])
+  @@map("payments")
+}
+
+model PaymentEvent {
+  id        String @id @default(cuid())
+  paymentId String
+
+  eventType             String
+  provider              String   @default("FIUU")
+  providerTransactionId String?
+
+  verified  Boolean @default(false)
+  processed Boolean @default(false)
+
+  payload Json?
+
+  createdAt DateTime @default(now())
+
+  payment Payment @relation(fields: [paymentId], references: [id])
+
+  @@index([paymentId])
+  @@index([providerTransactionId])
+  @@index([createdAt])
+  @@map("payment_events")
 }

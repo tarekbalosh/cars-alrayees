@@ -1,3 +1,4 @@
-export type { CarRepository } from './CarRepository';
-export type { CategoryRepository } from './CategoryRepository';
-export type { BookingRepository } from './BookingRepository';
+export * from './BookingRepository';
+export * from './CarRepository';
+export * from './CategoryRepository';
+export * from './CustomerRepository';

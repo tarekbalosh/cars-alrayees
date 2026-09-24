@@ -3,8 +3,9 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, CalendarDays } from 'lucide-react';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import Link from 'next/link';
 
 interface Pricing {
   dailyRate: any;
@@ -25,25 +26,21 @@ interface CarBookingWidgetProps {
   pricing: Pricing | null;
   carBrand: string;
   carModel: string;
+  carSlug: string;
   whatsappNumber: string;
   t: Translations;
   lang: string;
   isAvailable: boolean;
 }
 
-export function CarBookingWidget({ pricing, carBrand, carModel, whatsappNumber, t, lang, isAvailable }: CarBookingWidgetProps) {
+export function CarBookingWidget({ pricing, carBrand, carModel, carSlug, whatsappNumber, t, lang, isAvailable }: CarBookingWidgetProps) {
   const [days, setDays] = React.useState<number>(1);
   const isRtl = lang === 'ar';
 
   const dailyRateNum = pricing ? Number(pricing.dailyRate) : 0;
   const totalPrice = dailyRateNum * days;
 
-  const whatsappMessage = encodeURIComponent(
-    isRtl 
-      ? `مرحباً، أنا مهتم باستئجار سيارة ${carBrand} ${carModel} لمدة ${days} أيام.`
-      : `Hi, I'm interested in renting the ${carBrand} ${carModel} for ${days} days.`
-  );
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+  const checkoutUrl = `/${lang}/book/${carSlug}?days=${days}`;
 
   const handleDaysChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseInt(e.target.value);
@@ -105,11 +102,10 @@ export function CarBookingWidget({ pricing, carBrand, carModel, whatsappNumber, 
       )}
       
       {isAvailable ? (
-        <Button size="lg" asChild className="w-full h-14 text-lg font-semibold bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-600/20">
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-            <Phone className={isRtl ? "w-5 h-5 ml-2" : "w-5 h-5 mr-2"} />
+        <Button size="lg" asChild className="w-full h-14 text-lg font-semibold bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20">
+          <Link href={checkoutUrl}>
             {t.bookNow}
-          </a>
+          </Link>
         </Button>
       ) : (
         <Button size="lg" disabled className="w-full h-14 text-lg font-semibold">
