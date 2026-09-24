@@ -46,9 +46,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export async function generateStaticParams() {
-  return [{ lang: 'ar' }, { lang: 'en' }];
-}
+export const dynamic = 'force-dynamic';
 
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
