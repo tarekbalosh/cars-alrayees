@@ -36,7 +36,7 @@ export default async function PaymentsPage() {
               payments.map((payment) => (
                 <TableRow key={payment.id}>
                   <TableCell className="font-mono text-sm">
-                    {payment.transactionId || 'N/A'}
+                    {payment.providerTransactionId || 'N/A'}
                   </TableCell>
                   <TableCell>
                     {payment.booking?.customer?.fullName || 'Unknown'}
@@ -48,7 +48,7 @@ export default async function PaymentsPage() {
                     {Number(payment.amount).toLocaleString()} {payment.currency}
                   </TableCell>
                   <TableCell>
-                    <Badge variant={payment.status === 'COMPLETED' ? "default" : payment.status === 'FAILED' ? "destructive" : "secondary"}>
+                    <Badge variant={payment.status === 'PAID' ? "default" : payment.status === 'FAILED' ? "destructive" : "secondary"}>
                       {payment.status}
                     </Badge>
                   </TableCell>
